@@ -104,11 +104,11 @@ class NeonConnection
             $dsn = DATABASE_URL;
         }
 
-        $host = defined('fdb1030.awardspace.net') ? DB_HOST : '127.0.0.1';
-        $user = defined('4777508_neon') ? DB_USER : 'root';
-        $password = defined('@kean!2005#') ? DB_PASSWORD : '';
-        $database = defined('4777508_neon') ? DB_NAME : 'student_portal';
-        $port = intval(defined('DB_PORT') ? DB_PORT : 3306);
+        $host = DB_HOST;
+        $user = DB_USER;
+        $password = DB_PASSWORD;
+        $database = DB_NAME;
+        $port = intval(DB_PORT);
 
         if ($dsn) {
             $parsed = parse_url($dsn);

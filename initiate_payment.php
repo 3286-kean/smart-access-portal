@@ -38,9 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    $remaining = max(0, (float) $fee['amount'] - (float) $fee['paid_amount']);
+    if ($paying_amount > $remaining) {
+        $_SESSION['error'] = 'Payment cannot exceed the remaining balance.';
+        header("Location: student_dashboard.php?page=fee&payment");
+        exit;
+    }
+
     // Calculate new values
-    $new_paid = $fee['paid_amount'] + $paying_amount;
-    $balance = $fee['amount'] - $new_paid;
+    $new_paid = (float) $fee['paid_amount'] + $paying_amount;
+    $balance = (float) $fee['amount'] - $new_paid;
 
     if ($balance <= 0) {
         $balance = 0;
